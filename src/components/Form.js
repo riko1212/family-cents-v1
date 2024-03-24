@@ -3,13 +3,14 @@ import { useState } from 'react';
 export default function Form({ onAddSum, onAddItems }) {
   const [income, setIncome] = useState('');
   const [topic, setTopic] = useState('');
+  const [date, setDate] = useState(Date.now());
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!income || !topic) return;
 
-    const result = { income, topic, id: Date.now() };
+    const result = { income, topic, date, id: Date.now() };
     console.log(result);
 
     onAddSum(result.income);
@@ -17,6 +18,7 @@ export default function Form({ onAddSum, onAddItems }) {
 
     setIncome('');
     setTopic('');
+    setDate(Date.now());
   }
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -33,9 +35,17 @@ export default function Form({ onAddSum, onAddItems }) {
           type="number"
           name="user-sum"
           className="form-input"
-          placeholder="Enter data"
+          placeholder="Enter sum"
           value={income}
           onChange={(e) => setIncome(e.target.value)}
+        />
+        <input
+          type="text"
+          name="user-date"
+          className="form-input"
+          placeholder="Enter date"
+          value={new Date(date).toLocaleDateString('uk-UA')}
+          onChange={(e) => setDate(e.target.value)}
         />
       </div>
 

@@ -18,6 +18,12 @@ export default function InfoList({ items, onDeleteItem, onClearList }) {
     case 'low':
       sortedItems = items.slice().sort((a, b) => a.income - b.income);
       break;
+    case 'first':
+      sortedItems = items.slice().sort((a, b) => a.date - b.date);
+      break;
+    case 'last':
+      sortedItems = items.slice().sort((a, b) => b.date - a.date);
+      break;
     default:
       sortedItems = items;
   }
@@ -44,6 +50,8 @@ export default function InfoList({ items, onDeleteItem, onClearList }) {
             <option value="hight">from hight</option>
             <option value="low">from low</option>
             <option value="description">description</option>
+            <option value="first">from first</option>
+            <option value="last">from last</option>
           </select>
         </div>
         <button className="btn" onClick={onClearList}>
