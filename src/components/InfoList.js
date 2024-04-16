@@ -2,8 +2,17 @@ import { useState } from 'react';
 
 import InfoItem from './InfoItem';
 
-export default function InfoList({ items, onDeleteItem, onClearList }) {
+export default function InfoList({
+  items,
+  onDeleteModalOpen,
+  handleClearList,
+  isModalClose,
+  onDeleteItemId,
+  onUpdateItemData,
+  onClearModal,
+}) {
   const [sortBy, setSortBy] = useState('order');
+
   let sortedItems;
 
   switch (sortBy) {
@@ -32,7 +41,14 @@ export default function InfoList({ items, onDeleteItem, onClearList }) {
     <>
       <ul className="info-list">
         {sortedItems.map((item) => (
-          <InfoItem item={item} key={item.id} onDeleteItem={onDeleteItem} />
+          <InfoItem
+            item={item}
+            key={item.id}
+            onDeleteModalOpen={onDeleteModalOpen}
+            isModalClose={isModalClose}
+            onDeleteItemId={onDeleteItemId}
+            onUpdateItemData={onUpdateItemData}
+          />
         ))}
       </ul>
       <div className="info-actions">
@@ -54,7 +70,7 @@ export default function InfoList({ items, onDeleteItem, onClearList }) {
             <option value="last">from last</option>
           </select>
         </div>
-        <button className="btn" onClick={onClearList}>
+        <button className="btn" onClick={onClearModal}>
           Clear list
         </button>
       </div>

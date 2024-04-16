@@ -1,4 +1,4 @@
-export default function InfoItem({ item, onDeleteItem }) {
+export default function InfoItem({ onDeleteItemId, item, onUpdateItemData }) {
   function isToday(date) {
     const now = new Date();
 
@@ -28,13 +28,19 @@ export default function InfoItem({ item, onDeleteItem }) {
         </p>
       </div>
       <div className="info-icons">
-        <button type="button" className="info-icon-btn info-edit">
+        <button
+          type="button"
+          className="info-icon-btn info-edit"
+          onClick={() =>
+            onUpdateItemData(item.id, item.topic, item.income, item.date)
+          }
+        >
           &#9998;
         </button>
         <button
           type="button"
           className="info-icon-btn info-delete"
-          onClick={() => onDeleteItem(item.id)}
+          onClick={() => onDeleteItemId(item.id)}
         >
           &#10060;
         </button>

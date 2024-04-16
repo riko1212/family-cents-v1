@@ -11,7 +11,6 @@ export default function Form({ onAddSum, onAddItems }) {
     if (!income || !topic) return;
 
     const result = { income, topic, date, id: Date.now() };
-    console.log(result);
 
     onAddSum(result.income);
     onAddItems(result);
